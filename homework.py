@@ -113,7 +113,7 @@ class SportsWalking(Training):
         workout_time_min = self.duration * 60
         return (
             (self.COEFF_1 * self.weight
-             + (mean_speed**2 // self.height)
+             + (mean_speed ** 2 // self.height)
              * self.COEFF_2 * self.weight) * workout_time_min
         )
 
