@@ -2,13 +2,7 @@ from dataclasses import dataclass
 from typing import ClassVar
 
 
-@dataclass(
-    init=True,
-    repr=False,
-    eq=False,
-    order=False,
-    unsafe_hash=False,
-    frozen=False)
+@dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
     training_type: str = None
@@ -28,13 +22,7 @@ class InfoMessage:
         )
 
 
-@dataclass(
-    init=True,
-    repr=False,
-    eq=False,
-    order=False,
-    unsafe_hash=False,
-    frozen=False)
+@dataclass
 class Training:
     """Базовый класс тренировки."""
     LEN_STEP: ClassVar[float] = 0.65
@@ -55,7 +43,7 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        return
+        raise NotImplementedError
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -71,17 +59,11 @@ class Training:
         )
 
 
-@dataclass(
-    init=True,
-    repr=False,
-    eq=False,
-    order=False,
-    unsafe_hash=False,
-    frozen=False)
+@dataclass
 class Running(Training):
     """Тренировка: бег."""
-    COEFF_1: ClassVar[int] = 18
-    COEFF_2: ClassVar[int] = 20
+    COEFF_RUN_1: ClassVar[int] = 18
+    COEFF_RUN_2: ClassVar[int] = 20
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
@@ -93,17 +75,11 @@ class Running(Training):
         )
 
 
-@dataclass(
-    init=True,
-    repr=False,
-    eq=False,
-    order=False,
-    unsafe_hash=False,
-    frozen=False)
+@dataclass
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    COEFF_1: ClassVar[float] = 0.035
-    COEFF_2: ClassVar[float] = 0.029
+    COEFF_WLK_1: ClassVar[float] = 0.035
+    COEFF_WLK_2: ClassVar[float] = 0.029
 
     height: float
 
@@ -118,18 +94,12 @@ class SportsWalking(Training):
         )
 
 
-@dataclass(
-    init=True,
-    repr=False,
-    eq=False,
-    order=False,
-    unsafe_hash=False,
-    frozen=False)
+@dataclass
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP: ClassVar[float] = 1.38
-    COEFF_1: ClassVar[float] = 1.1
-    COEFF_2: ClassVar[int] = 2
+    COEFF_SWM_1: ClassVar[float] = 1.1
+    COEFF_SWM_2: ClassVar[int] = 2
 
     length_pool: float
     count_pool: float
